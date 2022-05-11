@@ -1,0 +1,12 @@
+{
+  "name": "backend_movie_search",
+  "version": "1.0.0",
+  "description": "Server providing communication between database or omdbapi.com based on FE request ",
+  "main": "server.js",
+  "scripts": {
+    "serve": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pavpench",
+  "license": "ISC"
+}
