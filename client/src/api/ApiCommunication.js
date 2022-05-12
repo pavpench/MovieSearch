@@ -1,9 +1,9 @@
 export const getData = (title, year, type) => {
   return new Promise((resolve, reject) => {
     const url =
-      `http://127.0.0.1:3000/?s=${title}` +
+      `http://127.0.0.1:3030/?s=${title}` +
       (year ? `&y=${year}` : "") +
-      (type ? `&t=${type}` : "");
+      (type ? `&type=${type}` : "");
     console.log(url);
 
     fetch(url)
@@ -12,6 +12,7 @@ export const getData = (title, year, type) => {
           response
             .json()
             .then((data) => {
+              console.log(data);
               resolve(data);
             })
             .catch((error) => {
@@ -25,20 +26,4 @@ export const getData = (title, year, type) => {
         reject(error);
       });
   });
-};
-
-export const searchBtnClick = (title, year, type) => {
-  getData(title, year, type)
-    .then((data) => {
-      if (data) {
-        console.log("server response:", data.Search);
-      } else {
-        console.log("no data");
-      }
-
-      console.log("get data triggered", data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 };

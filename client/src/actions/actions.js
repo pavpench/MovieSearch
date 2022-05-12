@@ -4,12 +4,7 @@ export const doneAction = (data) => {
     payload: data,
   };
 };
-export const extendAction = (data) => {
-  return {
-    type: "EXTEND",
-    payload: data,
-  };
-};
+
 export const errorAction = () => {
   return {
     type: "ERROR",
@@ -25,7 +20,7 @@ export const noDataAction = () => {
     type: "NO_DATA",
   };
 };
-export const chooseImageAction = (idx) => {
+export const chooseMovieAction = (idx) => {
   return {
     type: "CHOOSE_IMAGE",
     payload: idx,

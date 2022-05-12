@@ -1,5 +1,4 @@
-import "./App.css";
-import Search from "./components/searchBar";
+import Search from "./components/SearchBar";
 import { StorageProvider } from "./contexts";
 
 function App() {

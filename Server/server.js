@@ -2,7 +2,7 @@ const http = require("http");
 const url = require("url");
 
 const hostname = "127.0.0.1";
-const port = 3000;
+const port = 3030;
 
 const server = http.createServer(async (req, res) => {
   const headers = {
@@ -11,16 +11,17 @@ const server = http.createServer(async (req, res) => {
     "Access-Control-Allow-Max-Age": 259200,
     "Content-Type": "application/json",
   };
-  //access request.params data
+  /*access request.params data */
   let requestParamsObject = url.parse(req.url, true).query;
 
   let requestParams =
     (requestParamsObject.s ? `&s=${requestParamsObject.s}` : "") +
-    (requestParamsObject.y ? `&y=${requestParamsObject.y}` : "");
+    (requestParamsObject.y ? `&y=${requestParamsObject.y}` : "") +
+    (requestParamsObject.type ? `&type=${requestParamsObject.type}` : "");
 
-  console.log(requestParams);
+  console.log(requestParamsObject.type);
 
-  //access request.body data
+  /*access request.body data*/
   // let bufferData = [];
   // for await (const chunk of req) {
   //   bufferData.push(chunk);
@@ -31,12 +32,10 @@ const server = http.createServer(async (req, res) => {
     `http://www.omdbapi.com/?apikey=5945647d` + requestParams;
 
   http.get(apiRequestQuery, (resp) => {
-    console.log("request sent to api response:", resp);
     if (resp.statusCode === 200) {
       res.writeHead(200, headers);
       resp
         .on("data", (data) => {
-          console.log(data.toString());
           res.write(data.toString());
         })
         .on("error", (err) => {

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import { reducer, storage } from "../reducers";
+import { reducer, storage } from "../reducers/reducers";
 
 export const StorageContext = createContext();
 export const StorageProvider = ({ children }) => {
