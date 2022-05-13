@@ -45,7 +45,14 @@ export const reducer = (state = storage, action) => {
         chosenIdx: action.payload,
       };
       return state;
-
+    case "NO_USER_INPUT":
+      state = {
+        ...state,
+        searchResult: [],
+        searchStatus: "no_user_input",
+        chosenIdx: null,
+      };
+      return state;
     default:
       return state;
   }

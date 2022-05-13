@@ -26,3 +26,8 @@ export const chooseMovieAction = (idx) => {
     payload: idx,
   };
 };
+export const noUserInputAction = () => {
+  return {
+    type: "NO_USER_INPUT",
+  };
+};

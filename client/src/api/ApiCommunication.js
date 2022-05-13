@@ -1,9 +1,11 @@
-export const getData = (title, year, type) => {
+export const getData = (title, keyword, year, type, plot) => {
   return new Promise((resolve, reject) => {
     const url =
-      `http://127.0.0.1:3030/?s=${title}` +
+      `http://127.0.0.1:3030/?` +
+      ((title ? `t=${title}` : "") || (keyword ? `s=${keyword}` : "")) +
       (year ? `&y=${year}` : "") +
-      (type ? `&type=${type}` : "");
+      (type ? `&type=${type}` : "") +
+      (plot ? `&plot=${plot}` : "");
     console.log(url);
 
     fetch(url)
