@@ -15,11 +15,13 @@ const server = http.createServer(async (req, res) => {
   let requestParamsObject = url.parse(req.url, true).query;
 
   let requestParams =
+    (requestParamsObject.t ? `&t=${requestParamsObject.t}` : "") +
     (requestParamsObject.s ? `&s=${requestParamsObject.s}` : "") +
     (requestParamsObject.y ? `&y=${requestParamsObject.y}` : "") +
-    (requestParamsObject.type ? `&type=${requestParamsObject.type}` : "");
+    (requestParamsObject.type ? `&type=${requestParamsObject.type}` : "") +
+    (requestParamsObject.plot ? `&plot=${requestParamsObject.plot}` : "");
 
-  console.log(requestParamsObject.type);
+  console.log(requestParams);
 
   /*access request.body data*/
   // let bufferData = [];
