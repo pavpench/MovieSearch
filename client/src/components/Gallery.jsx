@@ -15,26 +15,47 @@ export default function Gallery() {
   switch (mainState.state.searchStatus) {
     case "done":
       console.log(mainState.state.searchResult);
-      movieFlyer = mainState.state.searchResult.map((movie, id) => {
-        console.log(movie);
-        return (
-          <Card key={id} className="p-1 m-1 w-25 h-10">
+      if (mainState.state.searchResult.constructor === Array) {
+        movieFlyer = mainState.state.searchResult.map((movie, id) => {
+          return (
+            <Card className="p-1 m-1 w-25 h-10">
+              <Card.Img
+                className="vh-5"
+                variant="top"
+                src={movie.Poster}
+                alt="No preview available"
+              />
+              <Card.Body>
+                <Card.Title>{movie.Title}</Card.Title>
+                <Card.Text>{movie.Year}</Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">{movie.Type}</small>
+              </Card.Footer>
+            </Card>
+          );
+        });
+      } else {
+        movieFlyer = (
+          <Card className="p-1 m-1 w-25 h-10">
             <Card.Img
               className="vh-5"
               variant="top"
-              src={movie.Poster}
+              src={mainState.state.searchResult.Poster}
               alt="No preview available"
             />
             <Card.Body>
-              <Card.Title>{movie.Title}</Card.Title>
-              <Card.Text>{movie.Year}</Card.Text>
+              <Card.Title>{mainState.state.searchResult.Title}</Card.Title>
+              <Card.Text>{mainState.state.searchResult.Year}</Card.Text>
             </Card.Body>
             <Card.Footer>
-              <small className="text-muted">{movie.Type}</small>
+              <small className="text-muted">
+                {mainState.state.searchResult.Type}
+              </small>
             </Card.Footer>
           </Card>
         );
-      });
+      }
       break;
     case "loading":
       console.log("case loading");

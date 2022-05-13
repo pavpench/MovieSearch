@@ -21,7 +21,7 @@ const server = http.createServer(async (req, res) => {
     (requestParamsObject.type ? `&type=${requestParamsObject.type}` : "") +
     (requestParamsObject.plot ? `&plot=${requestParamsObject.plot}` : "");
 
-  console.log(requestParams);
+  console.log("Client requests:", requestParams);
 
   /*access request.body data*/
   // let bufferData = [];
@@ -46,7 +46,6 @@ const server = http.createServer(async (req, res) => {
         })
         .on("end", () => {
           console.log(apiRequestQuery);
-          console.log("response ended");
           res.end();
         });
     }

@@ -7,6 +7,7 @@ import {
   errorAction,
   noDataAction,
   noUserInputAction,
+  loadingAction,
 } from "../actions/actions";
 
 export default function Search() {
@@ -19,19 +20,15 @@ export default function Search() {
 
   const SearchBtnClick = (title, keyWord, year, type) => {
     if (title || keyWord) {
-      // mainState.dispatch(loadingAction());
+      mainState.dispatch(loadingAction());
       getData(title, keyWord, year, type)
         .then((data) => {
-          console.log(data);
           if (data.Search) {
             mainState.dispatch(doneAction(data.Search));
-            console.log("server provided data");
           } else if (data.Title) {
-            console.log(data.Title);
             mainState.dispatch(doneAction(data));
           } else {
             mainState.dispatch(noDataAction());
-            console.log("no data responding to the request");
           }
         })
         .catch((error) => {
@@ -39,13 +36,12 @@ export default function Search() {
           console.log(error);
         });
     } else {
-      console.log("no user input");
       mainState.dispatch(noUserInputAction());
     }
   };
 
   return (
-    <div className="w-25 p-3">
+    <div className="w-10 p-3">
       <div className="col-12">
         <div>
           <label className="input-group-text">Search by...</label>
@@ -71,17 +67,15 @@ export default function Search() {
         </div>
       </div>
       <label className="input-group-text ">Limit search to...</label>
-      <div className="col-12 d-flex justify-content-evenly">
-        <div className="input-group-prepend">
-          <input
-            type="text"
-            className="form-control m-1 w-75"
-            placeholder="Year of release"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-          />
-        </div>
-        <div className="input-group-prepend m-1 w-50">
+      <div className="col-12 d-flex flex-wrap justify-content-evenly">
+        <input
+          type="text"
+          className="form-control m-1 "
+          placeholder="Year of release"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        />
+        <div className="input-group-prepend m-1">
           <Form.Select onChange={(e) => setType(e.target.value)}>
             <option value="">Category</option>
             <option value="movie">Movies</option>
