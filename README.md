@@ -1,7 +1,7 @@
 ## MovieSearch.com
 Movie search client supported by Backend for operating requests to a 3rd API 
 
-#### Initiating the prject and available scripts
+#### Initiating the project and available scripts
 Project is divided in Client and Server side 
 
  `npm instal`
